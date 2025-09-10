@@ -1,37 +1,52 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "vcs": {
-    "enabled": true,
+    "enabled": false,
     "clientKind": "git",
-    "useIgnoreFile": true
+    "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "ignoreUnknown": false,
+    "ignore": []
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2
+    "indentStyle": "space"
+  },
+  "organizeImports": {
+    "enabled": true
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
+      "style": {
+        "noNonNullAssertion": "info",
+        "useImportType": "info"
+      },
       "suspicious": {
-        "noUnknownAtRules": "off"
+        "noExtraNonNullAssertion": "info"
+      },
+      "a11y": {
+        "useSemanticElements": "info",
+        "noSvgWithoutTitle": "info",
+        "useButtonType": "info"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       }
-    },
-    "domains": {
-      "next": "recommended",
-      "react": "recommended"
     }
   },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single"
+    }
+  },
+  "json": {
+    "formatter": {
+      "indentWidth": 2,
+      "trailingCommas": "none"
     }
   }
 }
