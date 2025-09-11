@@ -4,7 +4,6 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-// biome-ignore lint/suspicious/noRedeclare: <explanation>
 export const prisma = new PrismaClient({
   log:
     process.env.NODE_ENV === 'development'
