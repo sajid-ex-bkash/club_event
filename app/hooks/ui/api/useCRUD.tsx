@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Define generic type T for data items
 type CrudHook<T> = {
   data: T[];
   loading: boolean;

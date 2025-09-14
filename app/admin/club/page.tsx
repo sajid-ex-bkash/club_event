@@ -1,6 +1,6 @@
 'use client';
 
-import { useCrud } from '@/app/hooks/ui/api/useCRUD'; // adjust path
+import { useCrud } from '@/app/hooks/ui/api/useCRUD';
 import Link from 'next/link';
 
 type Club = {
