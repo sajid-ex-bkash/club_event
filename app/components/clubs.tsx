@@ -1,11 +1,14 @@
+'use client';
 import { ImBlogger } from 'react-icons/im';
 import { IoMdFootball } from 'react-icons/io';
 import { LiaTableTennisSolid } from 'react-icons/lia';
 import { PiCodeBold, PiPersonSimpleBikeFill } from 'react-icons/pi';
 import { TbBrandApplePodcast } from 'react-icons/tb';
+import { useCrud } from '../hooks/ui/api/useCRUD';
 import type { TEvent } from '../types/event';
 import EventsContainer from './eventsContainer';
 export default function Clubs() {
+  const { data: events } = useCrud<TEvent>('/api/v1/event');
   const clubs = [
     { name: 'Game', icon: IoMdFootball },
     { name: 'Game2', icon: LiaTableTennisSolid },
@@ -28,7 +31,7 @@ export default function Clubs() {
           </div>
         ))}
       </div>
-      <EventsContainer title='Upcoming event' data={mockEvents} />
+      <EventsContainer title='Upcoming event' data={events} />
     </div>
   );
 }
@@ -42,8 +45,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/tech-conference.jpg',
     startTime: new Date('2025-09-15T09:00:00Z'),
     endTime: new Date('2025-09-15T17:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 2,
@@ -53,8 +55,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/ai-hackathon.jpg',
     startTime: new Date('2025-10-01T10:00:00Z'),
     endTime: new Date('2025-10-02T10:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 3,
@@ -64,8 +65,7 @@ export const mockEvents: TEvent[] = [
     image: 'null',
     startTime: new Date('2025-11-05T18:00:00Z'),
     endTime: new Date('2025-11-05T21:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 4,
@@ -75,8 +75,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/design-sprint.jpg',
     startTime: new Date('2025-09-20T09:30:00Z'),
     endTime: new Date('2025-09-20T15:30:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 5,
@@ -86,8 +85,7 @@ export const mockEvents: TEvent[] = [
     image: 'null',
     startTime: new Date('2025-12-10T14:00:00Z'),
     endTime: new Date('2025-12-10T20:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 6,
@@ -97,8 +95,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/blockchain-expo.jpg',
     startTime: new Date('2025-09-25T09:00:00Z'),
     endTime: new Date('2025-09-25T18:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 7,
@@ -108,8 +105,7 @@ export const mockEvents: TEvent[] = [
     image: 'null',
     startTime: new Date('2025-10-12T16:00:00Z'),
     endTime: new Date('2025-10-12T19:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 8,
@@ -119,8 +115,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/product-bootcamp.jpg',
     startTime: new Date('2025-11-20T09:00:00Z'),
     endTime: new Date('2025-11-21T17:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 9,
@@ -130,8 +125,7 @@ export const mockEvents: TEvent[] = [
     image: '/images/events/cybersecurity.jpg',
     startTime: new Date('2025-09-28T08:00:00Z'),
     endTime: new Date('2025-09-28T18:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
   {
     id: 10,
@@ -141,7 +135,6 @@ export const mockEvents: TEvent[] = [
     image: 'null',
     startTime: new Date('2025-12-01T10:00:00Z'),
     endTime: new Date('2025-12-01T16:00:00Z'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    clubId: 3,
   },
 ];

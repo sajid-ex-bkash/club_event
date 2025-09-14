@@ -1,11 +1,10 @@
 export type TEvent = {
   id: number;
   name: string;
-  description: string;
-  location: string;
-  startTime: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  description?: string;
+  location?: string;
   image?: string;
+  startTime: Date;
   endTime?: Date;
+  clubId: number;
 };

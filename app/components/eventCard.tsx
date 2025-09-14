@@ -14,7 +14,7 @@ export default function EventsCard({ data }: EventsCardProps) {
       className='hover:scale-102 transition-all duration-200 overflow-hidden'
     >
       <div className='relative w-full h-48 rounded-xl overflow-hidden'>
-        <Image src={'https://shorturl.at/GiG1U'} alt='event' fill={true} />
+        <Image src={data.image||'https://shorturl.at/GiG1U'} alt='event' fill={true} />
       </div>
       <div className='px-2 py-4'>
         <div className='flex justify-between items-center text-sm mb-2'>
