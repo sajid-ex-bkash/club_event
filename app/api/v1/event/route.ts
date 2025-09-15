@@ -10,31 +10,75 @@ async function parseJson(req: NextRequest) {
 }
 
 // ------------------- GET EVENTS -------------------
+// export async function GET(req: NextRequest) {
+//   const url = new URL(req.url);
+//   const type = url.searchParams.get('type');
+//   const now = new Date();
+
+//   try {
+//     let events;
+//     if (type === 'upcoming') {
+//       events = await prisma.event.findMany({
+//         where: { startTime: { gte: now } },
+//         include: { club: true },
+//         orderBy: { startTime: 'asc' },
+//       });
+//     } else if (type === 'past') {
+//       events = await prisma.event.findMany({
+//         where: { endTime: { lt: now } },
+//         include: { club: true },
+//         orderBy: { startTime: 'desc' },
+//       });
+//     } else {
+//       events = await prisma.event.findMany({
+//         include: { club: true },
+//         orderBy: { startTime: 'asc' },
+//       });
+//     }
+
+//     return NextResponse.json(events);
+//   } catch (error) {
+//     console.error(error);
+//     return NextResponse.json(
+//       { error: 'Failed to fetch events' },
+//       { status: 500 }
+//     );
+//   }
+// }
+
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const type = url.searchParams.get('type');
+  const clubsParam = url.searchParams.get('clubs'); // "1,2,3"
   const now = new Date();
 
+  // convert clubs query param into array of numbers
+  const clubIds = clubsParam
+    ? clubsParam
+        .split(',')
+        .map((id) => Number(id))
+        .filter((id) => !isNaN(id))
+    : [];
+
   try {
-    let events;
+    let whereClause: any = {};
     if (type === 'upcoming') {
-      events = await prisma.event.findMany({
-        where: { startTime: { gte: now } },
-        include: { club: true },
-        orderBy: { startTime: 'asc' },
-      });
+      whereClause.startTime = { gte: now };
     } else if (type === 'past') {
-      events = await prisma.event.findMany({
-        where: { endTime: { lt: now } },
-        include: { club: true },
-        orderBy: { startTime: 'desc' },
-      });
-    } else {
-      events = await prisma.event.findMany({
-        include: { club: true },
-        orderBy: { startTime: 'asc' },
-      });
+      whereClause.endTime = { lt: now };
     }
+
+    if (clubIds.length > 0) {
+      whereClause.clubId = { in: clubIds };
+    }
+
+    const events = await prisma.event.findMany({
+      where: whereClause,
+      include: { club: true },
+      orderBy: {
+        startTime: type === 'past' ? 'desc' : 'asc',
+      },
+    });
 
     return NextResponse.json(events);
   } catch (error) {
@@ -68,7 +112,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         image,
         startTime: new Date(startTime),
         endTime: endTime ? new Date(endTime) : null,
-        club: { connect: { id: clubId } },
+        club: { connect: { id: parseInt(clubId) } },
       },
     });
     return NextResponse.json(event, { status: 201 });

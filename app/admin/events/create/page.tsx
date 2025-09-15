@@ -31,7 +31,7 @@ export default function CreateEvent() {
   const onSubmit = async (data: TEvent) => {
     console.log('Form Data:', data);
     await createItem(data);
-    router.push('/admin/events');
+    // router.push('/admin/events');
   };
 
   return (
