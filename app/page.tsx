@@ -1,20 +1,20 @@
 import Clubs from './components/clubs';
+import Footer from './components/footer';
 import HomeSlider from './components/homeSlider';
 import './globals.css';
 export default function Home() {
   return (
     <>
-      <main className='h-screen'>
-        <div className='bg-gray-100'>
+      <main className=''>
+        <div className=''>
           <HomeSlider />
         </div>
-        <div className='container mx-auto my-16'>
+        <div className='container mx-auto my-0 md:my-16'>
           <Clubs />
         </div>
       </main>
-      {/* <footer className='row-start-3 flex gap-[24px] flex-wrap items-center justify-center'>
-        This is a footer.
-      </footer> */}
+
+      <Footer />
     </>
   );
 }
