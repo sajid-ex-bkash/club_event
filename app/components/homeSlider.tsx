@@ -51,13 +51,13 @@ export default function HomeSlider() {
 
               <button
                 type='button'
-                className='bg-blue-400 text-white px-6 py-2 rounded-md'
+                className='bg-primary text-white px-6 py-2 rounded-md'
               >
                 Explore
               </button>
             </div>
             <div className='order-1 md:order-2'>
-              <div className='w-full max-h-[580px] flex items-center justify-center'>
+              <div className='w-full h-[300px] md:h-[580px] flex items-center justify-center'>
                 <Lottie
                   animationData={club.media}
                   loop

@@ -55,14 +55,14 @@ export default function Clubs() {
             onClick={() => {
               router.push('/', { scroll: false });
             }}
-            className='bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition flex items-center gap-2 cursor-pointer'
+            className='flex items-center gap-2 px-4 py-2 text-white transition bg-red-500 rounded-lg cursor-pointer hover:bg-red-600'
           >
             <FaRegTrashAlt />
             <span>Clear All</span>
           </button>
         )}
       </div>
-      <div className='flex justify-between items-center overflow-x-auto gap-4 py-4 px-2'>
+      <div className='flex items-center justify-between gap-4 px-2 py-4 overflow-x-auto'>
         {clubs?.map(({ id, name }) => {
           const key = name.toLowerCase();
           const Icon = iconMap[key] ?? IoMdFootball;
@@ -76,8 +76,8 @@ export default function Clubs() {
                 className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg transition
                   ${
                     isSelected
-                      ? 'bg-blue-700 text-white border-2 border-red-500'
-                      : 'bg-blue-500 text-white hover:bg-blue-300'
+                      ? 'bg-secondary text-white border-2 border-red-500'
+                      : 'bg-primary text-white hover:bg-secondary'
                   }`}
               >
                 <Icon size={20} className='text-white' />
