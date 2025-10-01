@@ -1,6 +1,5 @@
 'use client';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FaRegTrashAlt } from 'react-icons/fa';
 import { ImBlogger } from 'react-icons/im';
 import { IoMdFootball } from 'react-icons/io';
 import { LiaTableTennisSolid } from 'react-icons/lia';
@@ -49,20 +48,20 @@ export default function Clubs() {
 
   return (
     <div>
-      <div className='flex justify-end my-4'>
-        {selectedIds.size > 0 && (
-          <button
-            onClick={() => {
-              router.push('/', { scroll: false });
-            }}
-            className='flex items-center gap-2 px-4 py-2 text-white transition bg-red-500 rounded-lg cursor-pointer hover:bg-red-600'
-          >
-            <FaRegTrashAlt />
-            <span>Clear All</span>
-          </button>
-        )}
-      </div>
+      <div className='flex justify-end my-4'></div>
       <div className='flex items-center justify-between gap-4 px-2 py-4 overflow-x-auto'>
+        <button
+          onClick={() => {
+            router.push('/', { scroll: false });
+          }}
+          className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg transition ${
+            selectedIds.size === 0
+              ? 'bg-primary text-white border border-primary'
+              : 'border border-primary text-black hover:bg-primary hover:text-white'
+          }`}
+        >
+          All
+        </button>
         {clubs?.map(({ id, name }) => {
           const key = name.toLowerCase();
           const Icon = iconMap[key] ?? IoMdFootball;
@@ -76,11 +75,11 @@ export default function Clubs() {
                 className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg transition
                   ${
                     isSelected
-                      ? 'bg-secondary text-white border-2 border-red-500'
-                      : 'bg-primary text-white hover:bg-secondary'
+                      ? 'bg-primary text-white border border-primary'
+                      : 'border border-primary text-black hover:bg-primary hover:text-white'
                   }`}
               >
-                <Icon size={20} className='text-white' />
+                <Icon size={20} />
                 <span className='text-xl'>{name}</span>
               </button>
             </div>
